@@ -11,9 +11,6 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # Set build type
 # set(CMAKE_BUILD_TYPE Release)
 
-
-find_package(Eigen3 3.3 REQUIRED NO_MODULE)
-find_package(Catch2 REQUIRED NO_MODULE)
 find_package(OpenMP)
 
 if(OPENMP_FOUND)
@@ -30,11 +27,14 @@ elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Intel")
 endif()
 
-include_directories(include)
+include_directories(
+        include
+        vendor/catch2/single_include
+        vendor/eigen
+        )
 
 set(LINK_LIBRARIES
-        Catch2::Catch
-        Eigen3::Eigen
+        # Eigen3::Eigen
         )
 
 set(SOURCES
