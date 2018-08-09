@@ -39,6 +39,10 @@ set(LINK_LIBRARIES
 
 set(SOURCES
         src/fis.cpp
+        src/main.cpp
+        src/membershipfunction_i.cpp
+        src/trimf.cpp
+        src/trilv.cpp
         )
 
 set(SOURCES_TEST
@@ -51,6 +55,7 @@ set(SOURCES_TEST ${SOURCES_TEST} ${SOURCES})
 # Make executable
 add_library(pyfuge ${SOURCES})
 target_link_libraries(pyfuge ${LINK_LIBRARIES})
+add_executable(pyfuge_exe ${SOURCES})
 
 
 # compile tests only if debug

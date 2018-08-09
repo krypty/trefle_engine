@@ -5,15 +5,19 @@
 #include <cmath>
 #include <vector>
 
+#include <assert.h>
+
+using namespace std;
+
 #define EPSILON 1e-9
 
 class LinearInterpolation {
 public:
-  static double interp(vector<double> &xs, const vector<double> &ys,
+  static double interp(const vector<double> &xs, const vector<double> &ys,
                        const double x) {
     assert(xs.size() == ys.size());
-    sort(xs.begin(), xs.end());
-    // assert(is_sorted(xs.begin(), xs.end()) && "xs is expected to be sorted");
+    //    sort(xs.begin(), xs.end());
+    assert(is_sorted(xs.begin(), xs.end()) && "xs is expected to be sorted");
     // using this image as reference:
     // https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/LinearInterpolation.svg/300px-LinearInterpolation.svg.png
 
