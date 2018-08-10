@@ -40,9 +40,15 @@ set(LINK_LIBRARIES
 set(SOURCES
         src/fis.cpp
         src/main.cpp
+        # Membership functions
         src/membershipfunction_i.cpp
         src/trimf.cpp
+        # Linguistic variables
+        src/linguisticvariable.cpp
         src/trilv.cpp
+        # Fuzzy Rules
+        src/fuzzy_rule_element.cpp
+        # Fuzzy Systems
         )
 
 set(SOURCES_TEST
@@ -56,7 +62,6 @@ set(SOURCES_TEST ${SOURCES_TEST} ${SOURCES})
 add_library(pyfuge ${SOURCES})
 target_link_libraries(pyfuge ${LINK_LIBRARIES})
 add_executable(pyfuge_exe ${SOURCES})
-
 
 # compile tests only if debug
 # TODO: use cmake built-in test mecanisms

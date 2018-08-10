@@ -8,3 +8,5 @@ double MembershipFunction_I::fuzzify(double in_value) {
   cout << "TODO alalal" << endl;
   return in_value;
 }
+
+MembershipFunction_I::~MembershipFunction_I(){}

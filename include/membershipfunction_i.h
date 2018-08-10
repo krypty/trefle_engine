@@ -16,7 +16,7 @@ public:
   const vector<double> &in_values() { return _in_values; }
   const vector<double> &mf_values() { return _mf_values; }
 
-  virtual ~MembershipFunction_I(){};
+  virtual ~MembershipFunction_I();
 
 protected:
   vector<double> _in_values;
