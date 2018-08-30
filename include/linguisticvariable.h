@@ -8,7 +8,7 @@ using namespace std;
 
 class LinguisticVariable {
 public:
-  double fuzzify(size_t mf_index, double in_value);
+  double fuzzify(size_t mf_index, double in_value) const;
   friend std::ostream &operator<<(std::ostream &out,
                                   const LinguisticVariable &lv);
 

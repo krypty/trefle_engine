@@ -14,7 +14,7 @@
 //    mf_values[i] = std::move(v);
 //  }
 //}
-double LinguisticVariable::fuzzify(size_t mf_index, double in_value) {
+double LinguisticVariable::fuzzify(size_t mf_index, double in_value) const {
   return LinearInterpolation::interp(in_values, mf_values[mf_index], in_value);
 }
 
