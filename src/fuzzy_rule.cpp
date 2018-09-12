@@ -21,7 +21,9 @@ double FuzzyRule::activate(const vector<double> &fuzzified_inputs) const {
 }
 
 vector<double> FuzzyRule::implicate(double ant_act) const {
-  vector<double> implicated_cons(cons.size());
+  vector<double> implicated_cons;
+  implicated_cons.reserve(cons.size());
+
   for (auto &cons_value : cons) {
     implicated_cons.push_back(implication_method(ant_act, cons_value));
   }

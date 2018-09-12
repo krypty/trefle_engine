@@ -32,7 +32,9 @@ SingletonFIS::predict_observation(const vector<double> &observation) {
     double max_ant_activation = 0.0;
 
     // rows=rules, cols=implicated cons per rule
-    vector<vector<double>> rules_implicated_cons(all_rules.size());
+    vector<vector<double>> rules_implicated_cons;
+    rules_implicated_cons.reserve(all_rules.size());
+
     vector<double> rules_activation;
 
     for (auto &rule : rules) {
@@ -69,7 +71,7 @@ SingletonFIS::defuzzify(const vector<double> &rules_activation,
                         const vector<vector<double>> &implicated_cons) {
     const size_t n_rules = implicated_cons.size();
     const size_t n_cons = implicated_cons[0].size();
-    vector<double> defuzzified_outputs(n_cons);
+    vector<double> defuzzified_outputs;
 
     for (size_t j = 0; j < n_cons; j++) {
         double numerator = 0.0;
