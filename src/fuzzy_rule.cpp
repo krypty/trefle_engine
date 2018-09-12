@@ -1,7 +1,8 @@
 #include "fuzzy_rule.h"
 
-vector<double> FuzzyRule::fuzzify(const vector<double> &observation) {
+vector<double> FuzzyRule::fuzzify(const vector<double> &observation) const {
   vector<double> fuzzified_ants;
+  // for (const std::pair<size_t, Antecedent> &ant : ants) {
   for (const std::pair<size_t, Antecedent> &ant : ants) {
     double in_value = observation[ant.first];
     double fuzzified_value = ant.second.fuzzify(in_value);
@@ -9,7 +10,7 @@ vector<double> FuzzyRule::fuzzify(const vector<double> &observation) {
   }
   return fuzzified_ants;
 }
-double FuzzyRule::activate(const vector<double> &fuzzified_inputs) {
+double FuzzyRule::activate(const vector<double> &fuzzified_inputs) const {
   double ant_act = fuzzified_inputs[0];
 
   // apply the fuzzy operator using a sliding window of size 2
@@ -19,7 +20,7 @@ double FuzzyRule::activate(const vector<double> &fuzzified_inputs) {
   return ant_act;
 }
 
-vector<double> FuzzyRule::implicate(double ant_act) {
+vector<double> FuzzyRule::implicate(double ant_act) const {
   vector<double> implicated_cons(cons.size());
   for (auto &cons_value : cons) {
     implicated_cons.push_back(implication_method(ant_act, cons_value));

@@ -47,8 +47,10 @@ set(SOURCES
         src/linguisticvariable.cpp
         src/trilv.cpp
         # Fuzzy Rules
+        src/fuzzy_rule.cpp
         src/fuzzy_rule_element.cpp
         # Fuzzy Systems
+        src/singleton_fis.cpp
         )
 
 set(SOURCES_TEST
