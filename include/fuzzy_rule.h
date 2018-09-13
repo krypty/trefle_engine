@@ -2,6 +2,7 @@
 #define FUZZY_RULE_H
 
 #include "antecedent.h"
+#include <iostream>
 #include <vector>
 
 using namespace std;
@@ -21,7 +22,7 @@ public:
     for (auto &ant : fr.ants) {
       ss << "v" << ant.first << " " << ant.second << ", ";
     }
-    cout << "] cons[";
+    ss << "] cons[";
     for (auto &c : fr.cons) {
       ss << c << ", ";
     }
