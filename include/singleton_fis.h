@@ -16,6 +16,17 @@ public:
 
   vector<vector<double>> predict(const vector<vector<double>> &observations);
 
+  friend std::ostream &operator<<(std::ostream &ss, const SingletonFIS &fis) {
+    ss << "Singleton FIS: " << endl;
+    ss << "    fuzzy rules" << endl;
+    for (auto &fr : fis.rules) {
+      ss << fr << endl;
+    }
+    ss << "    default fuzzy rule" << endl;
+    ss << fis.default_rule << endl;
+    return ss;
+  }
+
 private:
   vector<double> predict_observation(const vector<double> &observation);
   vector<double> defuzzify(const vector<double> &rules_activation,
