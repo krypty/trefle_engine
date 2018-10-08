@@ -33,8 +33,14 @@ include_directories(
         vendor/eigen
         )
 
+# JSON for Modern C++
+# Don't build json tests
+set(JSON_BuildTests OFF CACHE INTERNAL "")
+add_subdirectory(vendor/json)
+
 set(LINK_LIBRARIES
         # Eigen3::Eigen
+        nlohmann_json::nlohmann_json
         )
 
 set(SOURCES
@@ -51,6 +57,8 @@ set(SOURCES
         src/fuzzy_rule_element.cpp
         # Fuzzy Systems
         src/singleton_fis.cpp
+        # FIS readers and writers
+        src/json_fis_writer.cpp
         )
 
 set(SOURCES_TEST
@@ -58,7 +66,6 @@ set(SOURCES_TEST
         tests/tests.cpp
         )
 set(SOURCES_TEST ${SOURCES_TEST} ${SOURCES})
-
 
 # Make executable
 add_library(pyfuge ${SOURCES})
