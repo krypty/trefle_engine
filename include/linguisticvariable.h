@@ -12,11 +12,13 @@ public:
   friend std::ostream &operator<<(std::ostream &out,
                                   const LinguisticVariable &lv);
 
+public:
+  vector<double> in_values;
+  vector<vector<double>> mf_values;
+
 protected:
   LinguisticVariable() {} // make this class abstract because only derived
                           // classes can call this ctor
-  vector<double> in_values;
-  vector<vector<double>> mf_values;
 };
 
 #endif // LINGUISTICVARIABLE_I_H
