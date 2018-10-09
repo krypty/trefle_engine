@@ -5,6 +5,7 @@
 #include "fuzzy_rule.h"
 
 #include <iostream>
+#include <set>
 #include <vector>
 
 using namespace std;
@@ -27,6 +28,8 @@ public:
     return ss;
   }
 
+  set<size_t> get_used_vars();
+
 private:
   vector<double> predict_observation(const vector<double> &observation);
   vector<double> defuzzify(const vector<double> &rules_activation,
@@ -35,9 +38,11 @@ private:
   template <typename T>
   vector<const T *> convertVecToVecPtr(const vector<T> &source);
 
-private:
+public:
   const vector<FuzzyRule> rules;
   const DefaultFuzzyRule default_rule;
+
+private:
   vector<FuzzyRule *> all_rules;
 };
 #endif // SINGLETON_FIS_H

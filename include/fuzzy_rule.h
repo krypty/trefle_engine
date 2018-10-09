@@ -30,6 +30,10 @@ public:
     return ss;
   }
 
+public:
+  const vector<pair<size_t, Antecedent>> ants;
+  const vector<double> cons;
+
 protected:
   // we choose to use the minimum fuzzy operator.
   inline double fuzzy_operator(double op1, double op2) const {
@@ -44,8 +48,6 @@ protected:
     // consequent value"
     return ant_act * cons;
   }
-  const vector<pair<size_t, Antecedent>> ants;
-  const vector<double> cons;
 };
 
 #endif // FUZZY_RULE_H

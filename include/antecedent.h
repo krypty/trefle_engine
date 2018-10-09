@@ -20,7 +20,7 @@ public:
     return stream;
   }
 
-private:
+public:
   const LinguisticVariable lv;
   const size_t mf_index;
 };

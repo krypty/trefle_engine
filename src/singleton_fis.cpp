@@ -99,6 +99,16 @@ SingletonFIS::defuzzify(const vector<double> &rules_activation,
     return defuzzified_outputs;
 }
 
+set<size_t> SingletonFIS::get_used_vars() {
+    set<size_t> vars_used_indices;
+    for (auto &r : rules) {
+        for (auto &ant : r.ants) {
+            vars_used_indices.insert(ant.first);
+        }
+    }
+    return vars_used_indices;
+}
+
 template <typename T>
 vector<const T *> SingletonFIS::convertVecToVecPtr(const vector<T> &source) {
     vector<const T *> target(source.size());
