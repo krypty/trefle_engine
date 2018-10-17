@@ -57,8 +57,6 @@ set(SOURCES
         src/fuzzy_rule_element.cpp
         # Fuzzy Systems
         src/singleton_fis.cpp
-        # FIS readers and writers
-        src/json_fis_writer.cpp
         )
 
 set(SOURCES_TEST
