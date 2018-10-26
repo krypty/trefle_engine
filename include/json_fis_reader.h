@@ -11,7 +11,6 @@ public:
   JsonFISReader(const string &json_fis);
   SingletonFIS read();
   unordered_map<size_t, vector<double>> get_vars_range();
-  // vector<vector<double>> get_vars_range();
   vector<vector<double>> get_cons_range();
   vector<size_t> get_n_labels_per_cons();
 

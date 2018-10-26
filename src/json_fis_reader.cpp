@@ -73,19 +73,15 @@ vector<double> JsonFISReader::scale_lvs_to01(double var_min, double var_max,
 
   vector<double> scaled_lvs(p_points_size);
   for (size_t i = 0; i < p_points_size; i++) {
-    const auto scaled_p_point = (p_points[i] - var_min) / (var_max - var_min);
-    scaled_lvs[i] = scaled_p_point;
+    scaled_lvs[i] = (p_points[i] - var_min) / (var_max - var_min);
   }
 
   return scaled_lvs;
 }
 
 unordered_map<size_t, vector<double>> JsonFISReader::get_vars_range() {
-  cout << jfis << endl;
-  // TODO create map<size_t,
-
-  unordered_map<size_t, vector<double>> vars_range;
   unordered_map<string, vector<double>> vars_range_str = jfis["vars_range"];
+  unordered_map<size_t, vector<double>> vars_range;
 
   for (auto &var_range : vars_range_str) {
     auto var_name = var_range.first;
@@ -104,39 +100,3 @@ vector<vector<double>> JsonFISReader::get_cons_range() {
 vector<size_t> JsonFISReader::get_n_labels_per_cons() {
   return jfis["n_labels_per_cons"];
 }
-
-// std::function<vector<vector<double>>(const vector<vector<double>> &)>
-// JsonFISReader::get_scale_back_cons_func() {
-//
-//   return [=](const vector<vector<double>> &observations) {
-//     const size_t obs_size = observations.size();
-//     const size_t cons_size = observations[0].size();
-//
-//     cout << "helllllllo" << endl;
-//     cout << json_fis << endl;
-//     auto jfis = json::parse(json_fis);
-//     const vector<int> n_labels_per_cons = jfis["n_labels_per_cons"];
-//
-//     vector<vector<double>> scaled_observations(obs_size);
-//
-//     for (size_t j = 0; j < obs_size; j++) {
-//       auto observation = observations[j];
-//       auto scaled_observation = scaled_observations[j];
-//
-//       for (size_t i = 0; i < cons_size; i++) {
-//         // -1 because y is in [0, cons_n_labels-1]
-//         // auto yolo = n_labels_per_cons[i] - 1;
-//         // scaled_observation[i] =
-//         //     observation[i] / (jfis["n_labels_per_cons"][i] - 1);
-//
-//         // double cons_min = jfis["cons_range"][i][0];
-//         // double cons_max = jfis["cons_range"][i][1];
-//         //
-//         // // from [0, 1] to [cons_min, cons_max]
-//         // scaled_observation[i] =
-//         //     scaled_observation[i] * (cons_max - cons_min) + cons_min;
-//       }
-//     }
-//     return scaled_observations;
-//   };
-// }
