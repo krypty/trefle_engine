@@ -57,6 +57,8 @@ set(SOURCES
         src/fuzzy_rule_element.cpp
         # Fuzzy Systems
         src/singleton_fis.cpp
+        # Json import/export
+        src/json_fis_reader.cpp
         )
 
 set(SOURCES_TEST
