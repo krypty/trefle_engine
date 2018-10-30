@@ -30,7 +30,7 @@ SingletonFIS JsonFISReader::read() {
     p_points = scale_lvs_to01(var_min, var_max, p_points);
 
     TriLV tri_lv(p_points);
-    lvs[stoi(var_idx)] = tri_lv;
+    lvs.emplace(std::make_pair(stoi(var_idx), std::move(tri_lv)));
   }
 
   // Parse rules
