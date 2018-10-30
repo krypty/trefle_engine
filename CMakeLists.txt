@@ -33,12 +33,32 @@ include_directories(
         vendor/eigen
         )
 
+# JSON for Modern C++
+# Don't build json tests
+set(JSON_BuildTests OFF CACHE INTERNAL "")
+add_subdirectory(vendor/json)
+
 set(LINK_LIBRARIES
         # Eigen3::Eigen
+        nlohmann_json::nlohmann_json
         )
 
 set(SOURCES
         src/fis.cpp
+        src/main.cpp
+        # Membership functions
+        src/membershipfunction_i.cpp
+        src/trimf.cpp
+        # Linguistic variables
+        src/linguisticvariable.cpp
+        src/trilv.cpp
+        # Fuzzy Rules
+        src/fuzzy_rule.cpp
+        src/fuzzy_rule_element.cpp
+        # Fuzzy Systems
+        src/singleton_fis.cpp
+        # Json import/export
+        src/json_fis_reader.cpp
         )
 
 set(SOURCES_TEST
@@ -47,11 +67,10 @@ set(SOURCES_TEST
         )
 set(SOURCES_TEST ${SOURCES_TEST} ${SOURCES})
 
-
 # Make executable
 add_library(pyfuge ${SOURCES})
 target_link_libraries(pyfuge ${LINK_LIBRARIES})
-
+# add_executable(pyfuge_exe ${SOURCES})
 
 # compile tests only if debug
 # TODO: use cmake built-in test mecanisms
