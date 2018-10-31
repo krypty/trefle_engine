@@ -1,3 +1,6 @@
+#ifndef JSON_FIS_WRITER_H
+#define JSON_FIS_WRITER_H
+
 #include "singleton_fis.h"
 #include <algorithm>
 #include <iostream>
@@ -107,3 +110,5 @@ protected:
   const vector<vector<double>> cons_range;
   string &json_output;
 };
+
+#endif // JSON_FIS_WRITER_H
