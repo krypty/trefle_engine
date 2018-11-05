@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(FISEval)
+project(trefle_engine_c)
 
 # set( CMAKE_VERBOSE_MAKEFILE on )
 
@@ -31,6 +31,7 @@ include_directories(
         include
         vendor/catch2/single_include
         vendor/eigen
+        vendor/json/single_include
         )
 
 # JSON for Modern C++
@@ -39,8 +40,6 @@ set(JSON_BuildTests OFF CACHE INTERNAL "")
 add_subdirectory(vendor/json)
 
 set(LINK_LIBRARIES
-        # Eigen3::Eigen
-        nlohmann_json::nlohmann_json
         )
 
 set(SOURCES
@@ -68,9 +67,9 @@ set(SOURCES_TEST
 set(SOURCES_TEST ${SOURCES_TEST} ${SOURCES})
 
 # Make executable
-add_library(pyfuge ${SOURCES})
-target_link_libraries(pyfuge ${LINK_LIBRARIES})
-# add_executable(pyfuge_exe ${SOURCES})
+add_library(trefle_engine_c ${SOURCES})
+target_link_libraries(trefle_engine_c ${LINK_LIBRARIES})
+# add_executable(trefle_engine_c_exe ${SOURCES})
 
 # compile tests only if debug
 # TODO: use cmake built-in test mecanisms
