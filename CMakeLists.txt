@@ -22,6 +22,7 @@ endif()
 # Compiler specific flags
 if ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
         set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -ftree-vectorize -mtune=native -march=native -mavx")
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${OpenMP_CXX_FLAGS} -static-libstdc++")
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "MSVC")
 elseif ("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Intel")
