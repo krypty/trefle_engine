@@ -48,9 +48,7 @@ SingletonFIS::predict_observation(const vector<double> &observation) {
         vector<double> implicated_cons = rule.implicate(ant_activation); // (3)
 
         rules_activation.push_back(ant_activation);
-        // TODO should use push_back(std::move(implicated_cons)) since
-        // implicated_cons is not used afterwards?
-        rules_implicated_cons.push_back(implicated_cons);
+        rules_implicated_cons.push_back(std::move(implicated_cons));
     }
 
     // Handle default fuzzy rule
