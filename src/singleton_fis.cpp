@@ -41,13 +41,8 @@ SingletonFIS::predict_observation(const vector<double> &observation) {
 
     for (auto &rule : rules) {
         auto fuzzified_inputs = rule.fuzzify(observation); // (1)
-        // for (auto &fi : fuzzified_inputs) {
-        //     cout << "fi " << fi << endl;
-        // }
 
         double ant_activation = rule.activate(fuzzified_inputs); // (2)
-        // cout << "ant act " << ant_activation << endl;
-        // cout << endl;
         max_ant_activation = max(max_ant_activation, ant_activation);
 
         vector<double> implicated_cons = rule.implicate(ant_activation); // (3)
