@@ -9,7 +9,7 @@ public:
 
   // MembershipFunction_I interface
 public:
-  double fuzzify(double in_value);
+  double fuzzify(double in_value) override;
 };
 
 #endif // TRIMF_H
