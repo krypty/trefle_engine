@@ -1,11 +1,9 @@
 // main.cpp
-#include "fis.h"
 #include "linear_interpolation.h"
 #include "linguisticvariable.h"
 #include "omp.h"
 #include "trilv.h"
 #include "trimf.h"
-#include <Eigen/Dense>
 #include <iostream>
 #include <membershipfunction_i.h>
 #include <stdio.h>
@@ -13,18 +11,9 @@
 // #define NDEBUG
 // #include "assert.h"
 
-using Eigen::MatrixXd;
-
 int main() {
   printf("Hello World\n");
   printf("Hello World\n");
-
-  MatrixXd m(2, 2);
-  m(0, 0) = 3;
-  m(1, 0) = 2.5;
-  m(0, 1) = -1;
-  m(1, 1) = m(1, 0) + m(0, 1);
-  std::cout << m << std::endl;
 
   double x = 1.5;
   auto xs = vector<double>{1, 2, 4};
@@ -62,7 +51,6 @@ int main() {
   cout << lv3.fuzzify(2, 30) << endl;
   cout << lv3.fuzzify(2, 33) << endl;
   cout << v[1] << endl;
-
 
   cout << lv3 << endl;
   //  int nthreads, tid;

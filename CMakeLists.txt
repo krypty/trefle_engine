@@ -31,7 +31,6 @@ endif()
 include_directories(
         include
         vendor/catch2/single_include
-        vendor/eigen
         vendor/json/single_include
         )
 
@@ -44,7 +43,6 @@ set(LINK_LIBRARIES
         )
 
 set(SOURCES
-        src/fis.cpp
         src/main.cpp
         # Membership functions
         src/membershipfunction_i.cpp
