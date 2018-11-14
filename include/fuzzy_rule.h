@@ -4,6 +4,7 @@
 #include "antecedent.h"
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -37,7 +38,7 @@ public:
 protected:
   // we choose to use the minimum fuzzy operator.
   inline double fuzzy_operator(double op1, double op2) const {
-    return min(op1, op2);
+    return std::min(op1, op2);
   }
 
   inline double implication_method(double ant_act, double cons) const {
