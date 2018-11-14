@@ -15,9 +15,9 @@ vector<vector<double>>
 SingletonFIS::predict(const vector<vector<double>> &observations) {
   vector<vector<double>> y_pred(observations.size(), vector<double>{});
 
-  const size_t n = observations.size();
+  const long long n = observations.size();
 #pragma omp parallel for
-  for (size_t i = 0; i < n; i++) {
+  for (long long i = 0; i < n; i++) {
     y_pred[i] = predict_observation(observations[i]);
   }
   return y_pred;
