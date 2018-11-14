@@ -34,11 +34,6 @@ include_directories(
         vendor/json/single_include
         )
 
-# JSON for Modern C++
-# Don't build json tests
-set(JSON_BuildTests OFF CACHE INTERNAL "")
-add_subdirectory(vendor/json)
-
 set(LINK_LIBRARIES
         )
 
