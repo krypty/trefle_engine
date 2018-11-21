@@ -1,10 +1,5 @@
 #include "catch.hpp"
-
-#include "fis.h"
 #include "linear_interpolation.h"
-
-#include "custom_eigen_td.h"
-#include <Eigen/Core>
 
 using namespace std;
 
@@ -48,21 +43,3 @@ TEST_CASE("basic interpolation", "[single-file]") {
   REQUIRE(LinearInterpolation::interp(xs, ys, 2.8) == Approx(0));
 }
 
-// TEST_CASE("lalal", "[single-file]") {
-
-//   RowVector4d rules_act(0.2, 0.67, 0.33, 0.5);
-
-//   // Vector3d ifs_cons(1.0, 0.5, 0);
-//   Matrix<double, Dynamic, 3> ifs_cons;
-//   ifs_cons.resize(4, 3);
-//   ifs_cons << 0, 0, 1, // cons r1
-//               1, 0, 1, // cons r2
-//               0, 0, 0, // cons r3
-//               1, 1, 1; // cons r4
-
-//   cout << rules_act << endl;
-//   cout << ifs_cons << endl;
-
-//   cout << "result: " << endl;
-//   cout << (rules_act * ifs_cons) / rules_act.sum() << endl;
-// }
