@@ -4,6 +4,7 @@
 #include "default_fuzzy_rule.h"
 #include "fuzzy_rule.h"
 
+#include <functional>
 #include <iostream>
 #include <set>
 #include <vector>
@@ -35,14 +36,11 @@ private:
   vector<double> defuzzify(const vector<double> &rules_activation,
                            const vector<vector<double>> &implicated_cons);
 
-  template <typename T>
-  vector<const T *> convertVecToVecPtr(const vector<T> &source);
-
 public:
   const vector<FuzzyRule> rules;
   const DefaultFuzzyRule default_rule;
 
 private:
-  vector<FuzzyRule *> all_rules;
+  vector<std::reference_wrapper<const FuzzyRule>> all_rules;
 };
 #endif // SINGLETON_FIS_H

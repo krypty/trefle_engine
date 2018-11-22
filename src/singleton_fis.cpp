@@ -7,8 +7,10 @@ SingletonFIS::SingletonFIS(const vector<FuzzyRule> &rules,
     : rules(rules), default_rule(default_rule) {
 
   // Regroup rules and default rule into one container
-  vector<const FuzzyRule *> all_rules = convertVecToVecPtr(rules);
-  all_rules.push_back(&default_rule);
+  for (auto &rule : rules) {
+    all_rules.push_back(rule);
+  }
+  all_rules.push_back(default_rule);
 }
 
 vector<vector<double>>
@@ -100,12 +102,4 @@ set<size_t> SingletonFIS::get_used_vars() {
     }
   }
   return vars_used_indices;
-}
-
-template <typename T>
-vector<const T *> SingletonFIS::convertVecToVecPtr(const vector<T> &source) {
-  vector<const T *> target(source.size());
-  transform(source.begin(), source.end(), target.begin(),
-            [](const T &t) { return &t; });
-  return target;
 }
