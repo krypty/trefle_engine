@@ -56,6 +56,7 @@ set(SOURCES
 
 set(SOURCES_TEST
         tests/fis_lininterp_test.cpp
+        tests/fuzzy_labels_generator_test.cpp
         tests/tests.cpp
         )
 set(SOURCES_TEST ${SOURCES_TEST} ${SOURCES})
