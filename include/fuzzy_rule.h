@@ -2,9 +2,9 @@
 #define FUZZY_RULE_H
 
 #include "antecedent.h"
+#include <algorithm>
 #include <iostream>
 #include <vector>
-#include <algorithm>
 
 using namespace std;
 
