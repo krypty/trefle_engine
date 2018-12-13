@@ -1,6 +1,7 @@
 #ifndef FISVIEWER_H
 #define FISVIEWER_H
 
+#include "fmt/format.h"
 #include "fuzzy_labels_generator.h"
 #include "linguisticvariable.h"
 #include "observations_scaler.h"
@@ -27,13 +28,14 @@ public:
     // FIXME this works because p_positions==n_labels which is a too strong
     // assumption
 
-    std::stringstream ss;
-    for (auto &rule : fis.rules) {
-      print_rule(ss, rule);
-    }
-    print_rule(ss, fis.default_rule);
+    std::string out_description;
 
-    ss << "Variables definition\n";
+    for (auto &rule : fis.rules) {
+      out_description.append(rule_to_string(rule));
+    }
+    out_description.append(rule_to_string(fis.default_rule));
+
+    out_description.append("Variables definition\n");
     std::map<size_t, vector<double>> unique_vars;
     for (auto &r : fis.rules) {
       for (auto &ant : r.ants) {
@@ -46,52 +48,53 @@ public:
       }
     }
 
-    std::for_each(unique_vars.begin(), unique_vars.end(), [&ss](auto var) {
-      ss << "v" << var.first << ": ";
-      for (auto &p_point : var.second) {
-        ss << std::setprecision(3) << p_point << ", ";
-      }
-      ss << "\n";
-    });
+    std::for_each(unique_vars.begin(), unique_vars.end(),
+                  [&out_description](auto var) {
+                    out_description.append(fmt::format("v{}:", var.first));
+                    for (auto &p_point : var.second) {
+                      out_description.append(fmt::format("{:.3f}, ", p_point));
+                    }
+                    out_description.append("\n");
+                  });
 
-    std::cout << ss.str() << std::endl;
+    std::cout << out_description << std::endl;
   }
 
 private:
-  void print_rule(stringstream &ss, const FuzzyRule &rule) {
+  std::string rule_to_string(const FuzzyRule &rule) {
+    std::string out_rule;
     bool is_normal_rule = rule.ants.size() > 0;
     if (is_normal_rule) {
-      ss << "IF ";
+      out_rule.append("IF ");
     }
 
     for (size_t i = 0; i < rule.ants.size(); i++) {
       auto ant = rule.ants[i];
       size_t var_index = ant.first;
       size_t mf_index = ant.second.mf_index;
-      ss << "v" << var_index << " is " << labels[mf_index];
+      out_rule.append(fmt::format("v{} is {}", var_index, labels[mf_index]));
 
       if (i < rule.ants.size() - 1) {
-        ss << " AND ";
+        out_rule.append(" AND ");
       }
     }
 
     if (is_normal_rule) {
-      ss << " THEN [";
+      out_rule.append(" THEN [");
     } else {
-      ss << "ELSE [";
+      out_rule.append("ELSE [");
     }
 
     for (size_t i = 0; i < rule.cons.size(); i++) {
       auto con = rule.cons[i];
-      ss << con;
+      out_rule.append(fmt::format("{}", con));
 
       if (i < rule.cons.size() - 1) {
-        ss << ", ";
+        out_rule.append(", ");
       }
     }
-    ss << "]";
-
-    ss << std::endl;
+    out_rule.append("]\n");
+    return out_rule;
   }
 
 private:
