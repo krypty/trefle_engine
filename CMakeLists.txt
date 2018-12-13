@@ -34,7 +34,9 @@ include_directories(
         vendor/json/single_include
         )
 
+add_subdirectory(vendor/fmt)
 set(LINK_LIBRARIES
+        fmt
         )
 
 set(SOURCES
